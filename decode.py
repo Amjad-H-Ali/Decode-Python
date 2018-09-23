@@ -2,7 +2,7 @@ print("Decode!")
 
 # Uses recursion to evaluate the number of ways to decode data
 # k represents the portion of the string currently being evaluated
-def helper(data, k):
+def helper(data, k, storage):
 	# Exit code: for empty strings ("")
 	if (k == 0):
 		return 1;
@@ -14,13 +14,20 @@ def helper(data, k):
 	if (data[s] == '0'):
 		return 0;
 
+	# If data found and stored already, return it
+	if(storage[k]):
+		return storage[k]	
+
 	# Ex: helper("12345") = helper("2345") + helper("345")
-	result = helper(data, k - 1)
+	result = helper(data, k - 1, storage)
 
 	# Add helper("345") only if digit less than 27
 	if (k >= 2  and int(data[s:s+2]) <= 26):
-		result += helper(data, k - 2)
+		result += helper(data, k - 2, storage)
 
+	# Save data before returning
+	storage[k] = result
+	print(storage)
 	return result	
  	
 
@@ -29,8 +36,9 @@ def helper(data, k):
 
 # Takes in digits in the form of a string type as Argument
 def num_of_ways(data):
-
-	return helper(data, len(data))
+	# Populates array with None 
+	storage = [None] * (len(data) + 1)
+	return helper(data, len(data), storage)
 
 print(num_of_ways("123")) # 3
 print(num_of_ways("023")) # 0
