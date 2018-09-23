@@ -7,12 +7,20 @@ def helper(data, k):
 	if (k == 0):
 		return 1;
 
-	# Variable holding value of first index in current string
+	# Variable holding value of first index of char in current string
 	s = data.length - k	
 
-	# When string contains '0'; no way to decode
+	# When string contains char '0'; no way to decode
 	if (data[s] == '0'):
 		return 0;
+
+	# Ex: helper("12345") = helper("2345") + helper("345")
+	result = helper(data, k - 1)
+
+	# Add helper("345") only if digit less than 27
+	if (k >= 2 a and int(data[s:s+2]) <= 26):
+		result += helper(data, k - 2)
+ 	
 
 
 
