@@ -27,7 +27,6 @@ def helper(data, k, storage):
 
 	# Save data before returning
 	storage[k] = result
-	print(storage)
 	return result	
  	
 
