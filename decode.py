@@ -7,6 +7,9 @@ def helper(data, k):
 	if (k == 0):
 		return 1;
 
+	# Variable holding value of first index in current string
+	s = data.length - k	
+
 
 
 
