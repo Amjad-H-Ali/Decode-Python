@@ -10,6 +10,10 @@ def helper(data, k):
 	# Variable holding value of first index in current string
 	s = data.length - k	
 
+	# When string contains '0'; no way to decode
+	if (data[s] == '0'):
+		return 0;
+
 
 
 
